@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <div class="container mt-5">
         <div class="card p-4 shadow-sm rounded-3">
             <h2 class="mb-3">Add New Product</h2>
-           
-            
+
+
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs" id="productTabs" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -21,7 +23,7 @@
                     <button class="nav-link" id="advance-tab" data-bs-toggle="tab" data-bs-target="#advance" type="button" role="tab">Advance</button>
                 </li>
             </ul>
-            
+
             <div class="tab-content mt-3" id="productTabsContent">
                 <!-- General Tab -->
                 <div class="tab-pane fade show active" id="general" role="tabpanel">
@@ -37,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                        <div class="mb-3">
+                            <div class="mb-3">
                                 <label class="form-label">Product Code</label>
                                 <input type="text" class="form-control rounded-3" placeholder="Enter product code">
                             </div>
@@ -55,11 +57,11 @@
                                 <label class="form-label">Description</label>
                                 <textarea class="form-control rounded-3" rows="3" placeholder="Enter product description"></textarea>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Advance Tab -->
                 <div class="tab-pane fade" id="advance" role="tabpanel">
                     <div class="row g-4 mt-3">
@@ -101,4 +103,5 @@
         });
     </script>
 </body>
+
 </html>
