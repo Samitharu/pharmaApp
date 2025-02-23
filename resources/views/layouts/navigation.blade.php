@@ -11,6 +11,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('assest/css/app.css') }}">
 </head>
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,7 +26,7 @@
 
     <!-- Navigation Links -->
     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="no-underline">
             {{ __('Dashboard') }}
         </x-nav-link>
     </div>
@@ -46,14 +47,14 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('procurement.requests')">
+                <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Purchase Order') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')">
+                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
                     {{ __('Goods Receive Note') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')">
-                    {{ __('Goods Receive Return Note') }}
+                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
+                    {{ __('Goods Return Note') }}
                 </x-dropdown-link>
             </x-slot>
         </x-dropdown>
@@ -76,13 +77,13 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('procurement.requests')">
+                <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Invoice') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')">
+                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
                     {{ __('Returns') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')">
+                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
                     {{ __('Orders') }}
                 </x-dropdown-link>
             </x-slot>
@@ -105,13 +106,13 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('procurement.requests')">
+                <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Invoice') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')">
+                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
                     {{ __('Returns') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')">
+                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
                     {{ __('Orders') }}
                 </x-dropdown-link>
             </x-slot>
@@ -134,13 +135,13 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('masterdata.item')">
+                <x-dropdown-link :href="route('masterdata.item')" class="no-underline">
                     {{ __('Item') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')">
+                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
                     {{ __('suppliers') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')">
+                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
                     {{ __('Employees') }}
                 </x-dropdown-link>
             </x-slot>
@@ -165,7 +166,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('profile.edit')" class="no-underline">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -175,7 +176,7 @@
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                this.closest('form').submit();" class="no-underline">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>

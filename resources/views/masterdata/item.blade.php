@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
 
 <head>
@@ -10,9 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-</head>
-
+    
+</head> -->
+<x-app-layout>
 <body class="bg-light text-dark">
     <div class="container mt-5">
         <div class="d-flex justify-content-start mb-3">
@@ -71,7 +71,11 @@
                                 <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab">General</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="advance-tab" data-bs-toggle="tab" data-bs-target="#advance" type="button" role="tab">Advance</button>
+                                <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab">Settings</button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pring-tab" data-bs-toggle="tab" data-bs-target="#pricing" type="button" role="tab">Prices</button>
                             </li>
                         </ul>
 
@@ -100,9 +104,24 @@
                                                 <input type="text" class="form-control rounded-3" placeholder="Enter product name">
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Supplier</label>
-                                            <select name="cmbSupplier" id="cmbSupplier" class="form-select"></select>
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Supplier</label>
+                                                <select name="cmbSupplier" id="cmbSupplier" class="form-select">
+
+                                                </select>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Pack Size</label>
+                                                <input type="text" name="txtPackSize" id="txtPackSize" class="form-control" placeholder="Enter pack size">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Generic Name</label>
+                                                <input type="text" name="txtGenericName" id="txtGenericName" class="form-control" placeholder="Enter Generic / Drug Name">
+
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Description</label>
@@ -112,20 +131,39 @@
                                 </div>
                             </div>
 
-                            <!-- Advance Tab -->
-                            <div class="tab-pane fade" id="advance" role="tabpanel">
+                            <!-- Settings Tab -->
+                            <div class="tab-pane fade" id="settings" role="tabpanel">
                                 <div class="row g-4 mt-3">
                                     <div class="col-md-6">
                                         <label class="form-label">Status</label>
                                         <select class="form-select rounded-3">
-                                            <option>Published</option>
-                                            <option>Draft</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Deactive</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Base Price</label>
-                                        <input type="number" class="form-control rounded-3" placeholder="$132">
+                                        <label class="form-label">Barcode</label>
+                                        <input type="text" class="form-control " id="txtBarcode">
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Pring Tab -->
+                            <div class="tab-pane fade" id="pricing" role="tabpanel">
+                                <div class="row g-4 mt-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Purchase Price</label>
+                                        <input type="text" name="txtPurchasePrice" id="txtPurchasePrice" class="form-control price">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Whole Sale Price</label>
+                                        <input type="text" name="txtWholeSale" id="txtwholeSale" class="form-control price">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Retail Price</label>
+                                        <input type="text" name="txtRetail" id="txtRetail" class="form-control price">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -140,9 +178,9 @@
 
     </div>
 
-   
+
 
 </body>
 <script src="{{ asset('asset/js/master/item.js') }}"></script>
-
+</x-app-layout>
 </html>
