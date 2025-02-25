@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" style="background-color: oklch(0.925 0.084 155.995);" class="border-b border-gray-100 dark:border-gray-700">
+<!-- <nav x-data="{ open: false }" class="bg-blue dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"></nav> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- DataTables CSS -->
@@ -35,7 +36,8 @@
     <div class="hidden sm:flex sm:items-center sm:ms-6">
         <x-dropdown align="left" width="48">
             <x-slot name="trigger">
-                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+            <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
+            style="background-color: oklch(0.925 0.084 155.995);">
                     <div>{{ __('Procurement') }}</div>
 
                     <div class="ms-1">
@@ -65,7 +67,7 @@
     <div class="hidden sm:flex sm:items-center sm:ms-6">
         <x-dropdown align="left" width="48">
             <x-slot name="trigger">
-                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 background-color: oklch(0.925 0.084 155.995); dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                     <div>{{ __('Sales') }}</div>
 
                     <div class="ms-1">
@@ -94,7 +96,7 @@
     <div class="hidden sm:flex sm:items-center sm:ms-6">
         <x-dropdown align="left" width="48">
             <x-slot name="trigger">
-                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                <button class="inline-flex items-center px-3 py-2  text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 background-color: oklch(0.925 0.084 155.995); dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                     <div>{{ __('Stock') }}</div>
 
                     <div class="ms-1">
@@ -123,7 +125,7 @@
      <div class="hidden sm:flex sm:items-center sm:ms-6">
         <x-dropdown align="left" width="48">
             <x-slot name="trigger">
-                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 background-color: oklch(0.925 0.084 155.995); dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                     <div>{{ __('Master Files') }}</div>
 
                     <div class="ms-1">
@@ -154,7 +156,8 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                    <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
+                    style="background-color: oklch(0.925 0.084 155.995);">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

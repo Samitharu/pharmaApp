@@ -29,3 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+//Item saving
+function saveItem(){
+    
+}
