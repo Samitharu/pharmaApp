@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/masterdata/items', function () {
         return view('masterdata.item');
     })->name('masterdata.item');
+    Route::prefix('master-data')->controller(ProductController::class)->group(function () {
+        Route::post('/save-product', 'saveProduct')->name('product.save');
+        
+    });
 });
 
 require __DIR__.'/auth.php';

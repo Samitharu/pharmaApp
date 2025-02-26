@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('whole_sale_price',15,2)->nullable();
             $table->decimal('retail_price',15,2)->nullable();
             $table->decimal('purchase_price',15,2)->nullable();
+            $table->string('image',255)->nullable();
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();

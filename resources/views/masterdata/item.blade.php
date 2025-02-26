@@ -12,6 +12,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     
 </head> -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <x-app-layout>
 
     <body class="bg-light text-dark">
@@ -198,7 +199,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary">Save</button>
+                            <button class="btn btn-primary" id="btnSaveProduct">Save</button>
                         </div>
                     </div>
                 </div>

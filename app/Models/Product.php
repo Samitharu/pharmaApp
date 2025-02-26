@@ -21,6 +21,7 @@ class Product extends Model
         'whole_sale_price',
         'retail_price',
         'purchase_price',
+        'image',
         'created_by',
         'updated_by',
     ];
