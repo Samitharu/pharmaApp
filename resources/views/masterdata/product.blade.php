@@ -23,11 +23,11 @@
 
             <div class="container">
                 <h2 class="mb-4">Product List</h2>
-                <table id="example" class="table table-striped table-bordered">
+                <table id="productListTable" class="table table-striped table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th>Item Code</th>
-                            <th>Item Name</th>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
                             <th>Supplier</th>
                             <th>Purchase Price</th>
                             <th>Wholesale Price</th>
@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                       <!--  <tr>
                             <td>P001</td>
                             <td>Laptop</td>
                             <td>Tech Supplier Ltd.</td>
@@ -53,7 +53,7 @@
                             <td>25</td>
                             <td>30</td>
                             <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -210,7 +210,7 @@
 
 
     </body>
-    <script src="{{ asset('asset/js/master/item.js') }}"></script>
+    <script src="{{ asset('asset/js/master/product.js') }}"></script>
 </x-app-layout>
 
 </html>

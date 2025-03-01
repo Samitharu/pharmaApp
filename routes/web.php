@@ -20,19 +20,18 @@ Route::middleware('auth')->group(function () {
         return view('procurement.requests');
     })->name('procurement.requests');
     
-    Route::get('/procurement/orders', function () {
-        return view('procurement.orders');
-    })->name('procurement.orders');
+
     
-    Route::get('/procurement/suppliers', function () {
-        return view('procurement.suppliers');
-    })->name('procurement.suppliers');
+    Route::get('/masterdata/suppliers', function () {
+        return view('masterdata.supplier');
+    })->name('masterdata.suppliers');
 
     Route::get('/masterdata/items', function () {
-        return view('masterdata.item');
-    })->name('masterdata.item');
+        return view('masterdata.product');
+    })->name('masterdata.product');
     Route::prefix('master-data')->controller(ProductController::class)->group(function () {
         Route::post('/save-product', 'saveProduct')->name('product.save');
+        Route::get('/master-data/get-products', [ProductController::class,'getProducts'])->name('product.getAll');
         
     });
 });

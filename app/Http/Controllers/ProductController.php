@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -11,16 +14,17 @@ class ProductController extends Controller
     public function saveProduct(Request $request)
     {
         try {
+            DB::beginTransaction();
             // Validate the request
             $validatedData = $request->validate([
                 'product_code' => 'required|unique:products,product_code|string|max:255',
                 'product_name' => 'required|unique:products,product_name|string|max:255',
                 'barcode' => 'nullable|unique:products,barcode|string|max:255',
-                /* 'supplier_id' => 'required|exists:suppliers,id', */
+                'supplier_id' => 'required|exists:suppliers,id',
                 'pack_size' => 'nullable|string|max:255',
                 'status' => 'required|boolean',
                 'purchase_price' => 'required|numeric',
-                'wholesale_price' => 'required|numeric',
+                'whole_sale_price' => 'required|numeric',
                 'retail_price' => 'required|numeric',
             ]);
 
@@ -32,17 +36,27 @@ class ProductController extends Controller
 
             // Add image path to validated data
             $validatedData['image'] = $imagePath;
+            $validatedData['created_by'] = Auth::user()->id;
 
             // Create the product
-            if(Product::create($validatedData)) {
-                return response()->json(['message' => 'Product saved successfully'], 200);
-            }else{
-                return response()->json(['message'=> ''],0);
+            if (Product::create($validatedData)) {
+                DB::commit();
+                return response()->json(['message' => 'Product saved successfully',201]);
+            } else {
+                return response()->json(['message' => false]);
             }
-
-            
         } catch (\Exception $e) {
-            return back()->with("error", $e->getMessage());
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()]);
         }
+    }
+
+    //Load all products to the item table
+    public function getProducts(Request $request){
+        try{
+            
+        }catch(\Exception $e){
+            return response()->json(['message'=> $e->getMessage()]);
+        }     
     }
 }

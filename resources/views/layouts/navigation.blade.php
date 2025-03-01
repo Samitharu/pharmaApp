@@ -15,7 +15,13 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('assest/css/app.css') }}">
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.js" integrity="sha512-eOUPKZXJTfgptSYQqVilRmxUNYm0XVHwcRHD4mdtCLWf/fC9XWe98IT8H1xzBkLL4Mo9GL0xWMSJtgS5te9rQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.css" integrity="sha512-MpdEaY2YQ3EokN6lCD6bnWMl5Gwk7RjBbpKLovlrH6X+DRokrPRAF3zQJl1hZUiLXfo2e9MrOt+udOnHCAmi5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" integrity="sha512-IXuoq1aFd2wXs4NqGskwX2Vb+I8UJ+tGJEu/Dc0zwLNKeQ7CW3Sr6v0yU3z5OQWe3eScVIkER4J9L7byrgR/fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+
+    
 </head>
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,10 +61,10 @@
                 <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Purchase Order') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Goods Receive Note') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Goods Return Note') }}
                 </x-dropdown-link>
             </x-slot>
@@ -85,10 +91,10 @@
                 <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Invoice') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Returns') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Orders') }}
                 </x-dropdown-link>
             </x-slot>
@@ -114,10 +120,10 @@
                 <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
                     {{ __('Invoice') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Returns') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Orders') }}
                 </x-dropdown-link>
             </x-slot>
@@ -140,13 +146,13 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('masterdata.item')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.product')" class="no-underline">
                     {{ __('Item') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.orders')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('suppliers') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('procurement.suppliers')" class="no-underline">
+                <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">
                     {{ __('Employees') }}
                 </x-dropdown-link>
             </x-slot>

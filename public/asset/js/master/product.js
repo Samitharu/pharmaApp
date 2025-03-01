@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    
     // Initialize DataTable
-    const table = document.querySelector('#example');
+    const table = document.querySelector('#productListTable');
     if (table) {
         new DataTable(table, {
             paging: true,
@@ -40,7 +42,7 @@ function saveProduct(){
     const formData = new FormData();
     formData.append("product_code", document.querySelector("input[placeholder='Enter product code']").value);
     formData.append("product_name", document.querySelector("input[placeholder='Enter product name']").value);
-    formData.append("supplier_id", document.getElementById("cmbSupplier").value);
+    formData.append("supplier_id", /* document.getElementById("cmbSupplier").value */1 )
     formData.append("pack_size", document.getElementById("txtPackSize").value);
     formData.append("generic_name", document.getElementById("txtGenericName").value);
     formData.append("description", document.querySelector("textarea").value);
@@ -70,14 +72,42 @@ function saveProduct(){
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Product saved successfully!");
+            alertify.success('Product saved successfully');
             window.location.reload();
         } else {
-            alert("Error saving product. Please try again.");
+            alertify.error('Unable to save');
         }
     })
     .catch(error => {
         console.error("Error:", error);
-        alert("Something went wrong.");
+        alertify.error('Unable to save');
     });
+}
+
+//load product to the table
+function loadAllProducts() {
+    fetch("/master-data/get-products")
+        .then(response => response.json())
+        .then(data => {
+            const table = document.querySelector("#productListTable").DataTable();
+            table.clear(); // Clear existing table data
+            
+            data.forEach(product => {
+                table.row.add([
+                    product.product_code,
+                    product.product_name,
+                    product.supplier_name, // Assuming supplier_name comes from API
+                    product.pack_size,
+                    product.generic_name,
+                    product.retail_price,
+                    product.status == 1 ? 'Active' : 'Inactive',
+                    `<img src="${product.thumbnail}" alt="Product Image" width="50" height="50">`,
+                    `<button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Edit</button>`
+                ]).draw();
+            });
+        })
+        .catch(error => {
+            console.error("Error loading products:", error);
+            alertify.error("Failed to load products");
+        });
 }

@@ -4,7 +4,16 @@ export class Modal{
         this.message = message;
     }
 
+    
+    //Save / Update Confirmation Modal
     showSaveConfirmationModal(){
         
     }
+
+    //Warning Model such as delete
+    showWarningConfirmationModal(){
+
+    }
+
+
 }
