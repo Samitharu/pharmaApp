@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('supplier_name');
             $table->string('supplier_address');
             $table->string('supplier_contact_no');
+            $table->integer('created_by');
+            $table->integer('updated_by');
             $table->timestamps();
         });
     }

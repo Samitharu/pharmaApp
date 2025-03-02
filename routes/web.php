@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,11 +22,10 @@ Route::middleware('auth')->group(function () {
     })->name('procurement.requests');
     
 
+    //Master Data
     
-    Route::get('/masterdata/suppliers', function () {
-        return view('masterdata.supplier');
-    })->name('masterdata.suppliers');
 
+    //Master Data - Products
     Route::get('/masterdata/items', function () {
         return view('masterdata.product');
     })->name('masterdata.product');
@@ -34,7 +34,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/master-data/get-products', [ProductController::class,'getProducts'])->name('product.getAll');
         
     });
-    
+
+    //Master Data - Supplier
+    Route::get('/masterdata/suppliers', function () {
+        return view('masterdata.supplier');
+    })->name('masterdata.suppliers');
+
+    Route::prefic('master-data')->controller(SupplierController::class)->group(function () {
+        Route::post('/save-supplier','saveSupplier')->name('supplier.save');
+    });
 });
 
 require __DIR__.'/auth.php';
