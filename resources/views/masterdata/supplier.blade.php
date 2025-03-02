@@ -55,20 +55,20 @@
                 <div class="row g-4">
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Supplier Code</label>
-                        <input type="text" class="form-control rounded-3" placeholder="Enter supplier code">
+                        <input type="text" class="form-control rounded-3" placeholder="Enter supplier code" id="txtSupplierCode">
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Supplier Name</label>
-                        <input type="text" class="form-control rounded-3" placeholder="Enter supplier name">
+                        <input type="text" class="form-control rounded-3" placeholder="Enter supplier name" id="txtSupplierName">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Address</label>
-                    <textarea class="form-control rounded-3" rows="3" placeholder="Enter supplier address"></textarea>
+                    <textarea class="form-control rounded-3" rows="3" placeholder="Enter supplier address" id="txtSupplierAddress"></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Contact Number</label>
-                    <input type="text" class="form-control rounded-3" placeholder="Enter contact number">
+                    <input type="text" class="form-control rounded-3" placeholder="Enter contact number" id="txtSupplierContact">
                 </div>
             </div>
             <div class="modal-footer">

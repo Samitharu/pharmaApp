@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/master-data/get-products', [ProductController::class,'getProducts'])->name('product.getAll');
         
     });
+    
 });
 
 require __DIR__.'/auth.php';
