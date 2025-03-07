@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     })->name('masterdata.product');
     Route::prefix('master-data')->controller(ProductController::class)->group(function () {
         Route::post('/save-product', 'saveProduct')->name('product.save');
-        Route::get('/master-data/get-products', [ProductController::class,'getProducts'])->name('product.getAll');
+        Route::get('/get-products', [ProductController::class,'getProducts'])->name('product.getAll');
         
     });
 
@@ -40,9 +40,14 @@ Route::middleware('auth')->group(function () {
         return view('masterdata.supplier');
     })->name('masterdata.suppliers');
 
-    Route::prefic('master-data')->controller(SupplierController::class)->group(function () {
+    Route::prefix('master-data')->controller(SupplierController::class)->group(function () {
         Route::post('/save-supplier','saveSupplier')->name('supplier.save');
     });
+
+    //Procument - Purchase order
+    Route::get('/procument/purchaseOrders', function () {
+        return view('procument.purchaseOrder');
+    })->name('procument.purchaseorders');
 });
 
 require __DIR__.'/auth.php';

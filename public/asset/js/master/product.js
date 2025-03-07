@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    
+
     // Initialize DataTable
-    const table = document.querySelector('#productListTable');
-    if (table) {
-        new DataTable(table, {
+    const Itemtable = document.querySelector('#productListTable');
+    if (Itemtable) {
+        new DataTable(Itemtable, {
             paging: true,
             searching: true,
             ordering: true,
@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const preview = document.querySelector('#preview');
 
     if (imageUpload) {
-        imageUpload.addEventListener('change', function(event) {
+        imageUpload.addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     preview.src = e.target.result;
                     preview.classList.remove('d-none');
                 }
@@ -32,17 +32,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     //Save button click event
     const saveButton = document.getElementById('btnSaveProduct');
-    saveButton.addEventListener('click',()=>{
+    saveButton.addEventListener('click', () => {
         saveProduct();
     });
+
+    /*Page loading functions calling secotions*/
+    loadAllProducts();
+
+    /**End of the page loading functions calling section */
 });
 
 //Item saving
-function saveProduct(){
+function saveProduct() {
     const formData = new FormData();
     formData.append("product_code", document.querySelector("input[placeholder='Enter product code']").value);
     formData.append("product_name", document.querySelector("input[placeholder='Enter product name']").value);
-    formData.append("supplier_id", /* document.getElementById("cmbSupplier").value */1 )
+    formData.append("supplier_id", /* document.getElementById("cmbSupplier").value */1)
     formData.append("pack_size", document.getElementById("txtPackSize").value);
     formData.append("generic_name", document.getElementById("txtGenericName").value);
     formData.append("description", document.querySelector("textarea").value);
@@ -69,45 +74,67 @@ function saveProduct(){
             "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content")
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alertify.success('Product saved successfully');
-            window.location.reload();
-        } else {
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                alertify.success('Product saved successfully');
+                //window.location.reload();
+                loadAllProducts();
+            } else {
+                alertify.error('Unable to save');
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
             alertify.error('Unable to save');
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alertify.error('Unable to save');
-    });
+        });
 }
 
 //load product to the table
 function loadAllProducts() {
     fetch("/master-data/get-products")
         .then(response => response.json())
-        .then(data => {
-            const table = document.querySelector("#productListTable").DataTable();
-            table.clear(); // Clear existing table data
-            
-            data.forEach(product => {
-                table.row.add([
+        .then(response => {
+            if (!response.status) {
+                console.error("Error: Invalid API response", response);
+                alertify.error("Failed to load products");
+                return;
+            }
+
+            const products = response.data; // Access the 'data' key
+            if (!Array.isArray(products)) {
+                console.error("Expected an array but got:", products);
+                return;
+            }
+
+            const tableElement = document.querySelector("#productListTable");
+            const dataTable = new DataTable(tableElement);
+
+            dataTable.clear(); // Clear old data
+
+            products.forEach(product => {
+                dataTable.row.add([
                     product.product_code,
                     product.product_name,
-                    product.supplier_name, // Assuming supplier_name comes from API
-                    product.pack_size,
-                    product.generic_name,
+                    "Still Not Applicable", // Need to change - 07/03/2025
+                    product.purchase_price,
+                    product.whole_sale_price,
                     product.retail_price,
-                    product.status == 1 ? 'Active' : 'Inactive',
-                    `<img src="${product.thumbnail}" alt="Product Image" width="50" height="50">`,
-                    `<button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Edit</button>`
-                ]).draw();
+                    `<div style="display: flex; gap: 5px;">
+                        <button class="btn btn-warning btn-sm" onclick="editProduct('${product.product_id}')">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteProduct('${product.product_id}')">Delete</button>
+                    </div>`
+
+
+
+                ]);
             });
+
+            dataTable.draw();
         })
         .catch(error => {
             console.error("Error loading products:", error);
             alertify.error("Failed to load products");
         });
 }
+

@@ -58,7 +58,7 @@
             </x-slot>
 
             <x-slot name="content">
-                <x-dropdown-link :href="route('procurement.requests')" class="no-underline">
+                <x-dropdown-link :href="route('procument.purchaseorders')" class="no-underline">
                     {{ __('Purchase Order') }}
                 </x-dropdown-link>
                 <x-dropdown-link :href="route('masterdata.suppliers')" class="no-underline">

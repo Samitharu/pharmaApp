@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
     // Initialize DataTable
     const table = document.querySelector('#supplierListTable');
     if (table) {
@@ -10,14 +11,20 @@
         });
     }
 
+    //supplier save button
+    const supplierSaveBtn = document.getElementById('btnSaveSupplier');
+    supplierSaveBtn.addEventListener('click',()=>{
+        saveSupplier();
+    });
+});
 
     //Save Supplier
     function saveSupplier(){
         const formData = new FormData();
         formData.append("supplier_code", document.getElementById("txtSupplierCode").value);
-        formData.append("suppplier_name", document.getElementById("txtSupplierName").value);
+        formData.append("supplier_name", document.getElementById("txtSupplierName").value);
         formData.append("supplier_address",  document.getElementById("txtSupplierAddress").value);
-        formData.append("supplier_contact", document.getElementById("txtSupplierContact").value);
+        formData.append("supplier_contact_no", document.getElementById("txtSupplierContact").value);
         
         // Send data to Laravel backend
         fetch("/master-data/save-supplier", {
@@ -29,9 +36,9 @@
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.status){
                 alertify.success('Supplier saved successfully');
-                window.location.reload();
+               
             } else {
                 alertify.error('Unable to save');
             }
