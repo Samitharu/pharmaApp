@@ -23,24 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       <!--  <tr>
-                            <td>P001</td>
-                            <td>Laptop</td>
-                            <td>Tech Supplier Ltd.</td>
-                            <td>800</td>
-                            <td>900</td>
-                            <td>1000</td>
-                            <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>P002</td>
-                            <td>Wireless Mouse</td>
-                            <td>Gadgets World</td>
-                            <td>20</td>
-                            <td>25</td>
-                            <td>30</td>
-                            <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                        </tr> -->
+                       
                     </tbody>
                 </table>
             </div>
