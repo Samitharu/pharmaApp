@@ -43,7 +43,7 @@ class ProductController extends Controller
             // Create the product
             if (Product::create($validatedData)) {
                 DB::commit();
-                return response()->json(['message' => 'Product saved successfully','status' => true,201]);
+                return response()->json(['message' => 'Product saved successfully', 'status' => true, 201]);
             } else {
                 return response()->json(['message' => false]);
             }
@@ -54,14 +54,60 @@ class ProductController extends Controller
     }
 
     //Load all products to the item table
-    public function getProducts(Request $request){
-        try{
+    public function getProducts(Request $request)
+    {
+        try {
             $product = DB::table('products')
-            ->select('product_id','product_code', 'product_name', 'purchase_price','whole_sale_price','retail_price')
-            ->get();
-            return response()->json(['status'=>true,'data'=>$product]);
-        }catch(\Exception $e){
-            return response()->json(['message'=> $e->getMessage()]);
-        }     
+                ->select('product_id', 'product_code', 'product_name', 'purchase_price', 'whole_sale_price', 'retail_price')
+                ->get();
+            return response()->json(['status' => true, 'data' => $product]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    //loading item using barcode from the db/ will be used for all transactions
+    public function getItemByBarcode($barcode)
+    {
+        $item = Product::where('barcode', $barcode)->first();
+
+        if ($item) {
+            return response()->json([
+                'success' => true,
+                'item' => [
+                    'item_code' => $item->item_code,
+                    'name' => $item->name,
+                    'pack_size' => $item->pack_size,
+                    'purchase_price' => $item->purchase_price,
+                    'wholesale_price' => $item->wholesale_price,
+                    'retail_price' => $item->retail_price,
+                ]
+            ]);
+        } else {
+            return response()->json(['success' => false]);
+        }
+    }
+
+    public function getItemToPopupSearch() {
+        $items = Product::all();
+
+if ($items->isNotEmpty()) {
+    return response()->json([
+        'success' => true,
+        'items' => $items->map(function ($item) {
+            return [
+                'product_code' => $item->product_code,
+                'product_name' => $item->product_name,
+                'pack_size' => $item->pack_size,
+                'purchase_price' => $item->purchase_price,
+                'wholesale_price' => $item->wholesale_price,
+                'retail_price' => $item->retail_price,
+            ];
+        })
+    ]);
+} else {
+    return response()->json(['success' => false]);
+}
+
     }
 }

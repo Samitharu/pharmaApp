@@ -48,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/procument/purchaseOrders', function () {
         return view('procument.purchaseOrder');
     })->name('procument.purchaseorders');
+    Route::get('/get-item-by-barcode/{barcode}', [ProductController::class, 'getItemByBarcode']); // will be used to all PO / GRN /Return / Invoices
+    Route::get('/get-item-to-popup-search', [ProductController::class,'getItemToPopupSearch']);
+
 });
 
 require __DIR__.'/auth.php';
