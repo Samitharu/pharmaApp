@@ -12,7 +12,8 @@
                     <div class="row">
                         <!-- First Div -->
                         <div class="col-8">
-                            <div style="border: 2px solid black; border-radius: 15px; padding: 20px; margin: 10px 0;">
+                        <div class="shadow-lg rounded-lg p-5 bg-white my-3">
+
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Supplier</label>
@@ -48,28 +49,30 @@
 
                         <!-- Second Div -->
                         <div class="col-4">
-                            <div style="border: 2px solid black; border-radius: 15px; padding: 20px; margin: 10px 0;">
-                                <h5 class="text-center">Summary</h5>
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label">Gross Total:</label>
-                                    <span id="grossTotal">0.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label">Discount:</label>
-                                    <span id="discount">0.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label">Net Total:</label>
-                                    <span id="netTotal">0.00</span>
-                                </div>
-                            </div>
+                        <div id="summaryBox" class="shadow-lg rounded-lg p-5 bg-white my-3 summary-box">
+    <h5 class="text-center">Summary</h5>
+    <div class="d-flex justify-content-between">
+        <label class="form-label">Gross Total:</label>
+        <span id="grossTotal">0.00</span>
+    </div>
+    <div class="d-flex justify-content-between">
+        <label class="form-label">Discount:</label>
+        <span id="discount">0.00</span>
+    </div>
+    <div class="d-flex justify-content-between">
+        <label class="form-label">Net Total:</label>
+        <span id="netTotal">0.00</span>
+    </div>
+</div>
+
                         </div>
                     </div>
 
                     <!-- Third Div with Editable Table -->
                     <div class="row">
                         <div class="col-12">
-                            <div style="border: 2px solid black; border-radius: 15px; padding: 20px; margin: 10px 0;">
+                        <div class="shadow-lg rounded-lg p-5 bg-white my-3">
+
                                 <h5 class="text-center">Product Details</h5>
 
                                 @php
