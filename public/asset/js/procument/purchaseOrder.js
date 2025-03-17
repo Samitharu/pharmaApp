@@ -32,25 +32,39 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-function fetchItemDetails(barcode, inputField) {
-    fetch(`/get-item-by-barcode/${barcode}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                let row = inputField.closest("tr");
-                row.querySelector(".item-name").value = data.item.name;
-                row.querySelector(".item-code").value = data.item.item_code;
-                row.querySelector(".pack-size").value = data.item.pack_size;
-                row.querySelector(".purchase-price").value = data.item.purchase_price;
-                row.querySelector(".wholesale-price").value = data.item.wholesale_price;
-                row.querySelector(".retail-price").value = data.item.retail_price;
-                row.querySelector(".qty").focus();
-            } else {
-                alert("Item not found!");
-            }
-        })
-        .catch(error => console.error("Error fetching item:", error));
+let debounceTimer; // Store the timer
+
+function fetchItemDetails(event) {
+    let inputField = event.target; 
+    let barcode = inputField.value; 
+
+    // Clear the previous timer to reset the debounce delay
+    clearTimeout(debounceTimer);
+
+    // Set a new timer to wait for 500ms after the user stops typing
+    debounceTimer = setTimeout(() => {
+        if (barcode.trim() !== "") {  // Ensure barcode is not empty
+            fetch(`/get-item-by-barcode/${barcode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        let row = inputField.closest("tr");
+                        console.log(row);
+                        
+                        row.querySelector(".item-name").value = data.item.name;
+                        row.querySelector(".item-code").value = data.item.item_code;
+                        row.querySelector(".pack-size").value = data.item.pack_size;
+                        row.querySelector(".purchase-price").value = data.item.purchase_price;
+                        row.querySelector(".wholesale-price").value = data.item.wholesale_price;
+                        row.querySelector(".retail-price").value = data.item.retail_price;
+                        row.querySelector(".qty").focus();
+                    } 
+                })
+                .catch(error => console.error("Error fetching item:", error));
+        }
+    }, 500);  // 500ms delay after the user stops typing
 }
+
 
 //load items to the popup search
 function loadItems() {

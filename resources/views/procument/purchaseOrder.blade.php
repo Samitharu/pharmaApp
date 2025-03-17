@@ -77,7 +77,7 @@
 
                                 $rows = [
                                 [
-                                'Barcode' => ['type' => 'text', 'placeholder' => 'Scan Barcode', 'class' => 'barcode-input' ,'oninput' => 'readBarcode(this)'],
+                                'Barcode' => ['type' => 'text', 'placeholder' => 'Scan Barcode', 'class' => 'barcode-input' ,'oninput' => 'fetchItemDetails(event)'],
                                 'Item Code' => ['type' => 'text', 'placeholder' => 'Item Code', 'class' => 'item-code', 'onfocus' => 'showItemSearchModal("itemSearchModal")'],
                                 'Item Name' => ['type' => 'text', 'placeholder' => 'Item Name', 'class' => 'item-name'],
                                 'Qty' => ['type' => 'number', 'placeholder' => 'Qty', 'class' => 'qty'],

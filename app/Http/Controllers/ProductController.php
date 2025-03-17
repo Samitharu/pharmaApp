@@ -75,8 +75,8 @@ class ProductController extends Controller
             return response()->json([
                 'success' => true,
                 'item' => [
-                    'item_code' => $item->item_code,
-                    'name' => $item->name,
+                    'item_code' => $item->product_code,
+                    'name' => $item->product_name,
                     'pack_size' => $item->pack_size,
                     'purchase_price' => $item->purchase_price,
                     'wholesale_price' => $item->wholesale_price,

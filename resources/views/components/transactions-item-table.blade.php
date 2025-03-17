@@ -13,10 +13,12 @@
                 @foreach ($columns as $column)
                 <td>
                     @if (is_array($row[$column]))
-                    <input type="{{ $row[$column]['type'] }}" placeholder="{{ $row[$column]['placeholder'] }}" 
-                    class="form-control item-input" @isset($row[$column]['onfocus'])
-                     onfocus="{{ $row[$column]['onfocus'] }}" @endisset @isset($row[$column]['onfocus']) 
-                     oninput="{{ $row[$column]['onfocus'] }}" @endisset>
+                    <input type="{{ $row[$column]['type'] }}" 
+       placeholder="{{ $row[$column]['placeholder'] }}" 
+       class="form-control item-input {{ $row[$column]['class'] ?? '' }}" 
+       @isset($row[$column]['onfocus']) onfocus="{{ $row[$column]['onfocus'] }}" @endisset 
+       @isset($row[$column]['oninput']) oninput="{{ $row[$column]['oninput'] }}" @endisset>
+
                     @else
                     {!! $row[$column] !!}
                     @endif
@@ -26,6 +28,4 @@
             @endforeach
         </tbody>
     </table>
-
-
 </div>

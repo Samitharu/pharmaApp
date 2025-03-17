@@ -1,8 +1,3 @@
-function readBarcode(event){
-    console.log(event);
-    
-}
-
 
 
 //show item search modal
