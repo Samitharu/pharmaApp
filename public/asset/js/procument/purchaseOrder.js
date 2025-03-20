@@ -1,32 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const table = document.getElementById("transactionsTable");
-
-    table.addEventListener("keydown", function (event) {
-        // Check if "Enter" key is pressed & exclude remove button
-        if (event.key === "Enter" && !event.target.closest(".remove-item")) {
-            event.preventDefault(); // Prevent form submission
-
-            let currentRow = event.target.closest("tr");
-            if (currentRow) {
-                // Clone row and reset values
-                let newRow = currentRow.cloneNode(true);
-                newRow.querySelectorAll("input").forEach(input => input.value = "");
-
-                // Append new row
-                table.querySelector("tbody").appendChild(newRow);
-            }
-        }
-    });
-
-    // Remove row when clicking "Remove" button
-    table.addEventListener("click", function (event) {
-        if (event.target.classList.contains("remove-item")) {
-            const rows = table.querySelectorAll("tbody tr");
-            if (rows.length > 1) { // Prevent removing the last row
-                event.target.closest("tr").remove();
-            }
-        }
-    });
+   
 
     loadItems();
 });
