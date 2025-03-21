@@ -20,30 +20,19 @@
                                         <select name="cmbSupplier" id="cmbSupplier" class="form-select"></select>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Pack Size</label>
-                                        <input type="text" name="txtPackSize" id="txtPackSize" class="form-control" placeholder="Enter pack size">
+                                        <x-server-date id="expectedDate" name="expectedDate" label="Expected Date"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Generic Name</label>
-                                        <input type="text" name="txtGenericName" id="txtGenericName" class="form-control" placeholder="Enter Generic / Drug Name">
+                                    <x-payment-method-select-tag/>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                        <label class="form-label">Brand Name</label>
-                                        <input type="text" name="txtBrandName" id="txtBrandName" class="form-control" placeholder="Enter Brand Name">
+                                        <label class="form-label">Discount</label>
+                                        <input type="text" name="txtDiscount" id="txtDiscount" class="form-control numeric" placeholder="Enter discount">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Quantity</label>
-                                        <input type="number" name="txtQuantity" id="txtQuantity" class="form-control" placeholder="Enter Quantity">
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Price</label>
-                                        <input type="text" name="txtPrice" id="txtPrice" class="form-control" placeholder="Enter Price">
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 
