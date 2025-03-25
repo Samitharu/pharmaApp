@@ -75,6 +75,7 @@ class ProductController extends Controller
             return response()->json([
                 'success' => true,
                 'item' => [
+                    'item_id' => $item->product_id,
                     'item_code' => $item->product_code,
                     'name' => $item->product_name,
                     'pack_size' => $item->pack_size,
@@ -96,6 +97,7 @@ if ($items->isNotEmpty()) {
         'success' => true,
         'items' => $items->map(function ($item) {
             return [
+                'product_id' => $item->product_id,
                 'product_code' => $item->product_code,
                 'product_name' => $item->product_name,
                 'pack_size' => $item->pack_size,
@@ -109,5 +111,27 @@ if ($items->isNotEmpty()) {
     return response()->json(['success' => false]);
 }
 
+    }
+
+    public function getItemByProductId($product_id)
+    {
+        $item = Product::where('product_id', $product_id)->first();
+
+        if ($item) {
+            return response()->json([
+                'success' => true,
+                'item' => [
+                    'product_id' => $item->product_id,
+                    'product_code' => $item->product_code,
+                    'product_name' => $item->product_name,
+                    'pack_size' => $item->pack_size,
+                    'purchase_price' => $item->purchase_price,
+                    'wholesale_price' => $item->wholesale_price,
+                    'retail_price' => $item->retail_price,
+                ]
+            ]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
 }

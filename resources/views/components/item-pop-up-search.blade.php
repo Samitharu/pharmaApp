@@ -5,6 +5,9 @@
                 <h5 class="modal-title" id="{{ $id }}Label">{{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="col-6 mt-5 ml-5"> 
+                <input type="text" id="popUpSearchInput" data-id ="{{ $searchingTable }}" class="form-control mb-3" placeholder="Search products..." oninput="searchTable(this)">
+            </div>
             <div class="modal-body">
                 {{ $slot }}
             </div>

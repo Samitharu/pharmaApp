@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
         return view('procument.purchaseOrder');
     })->name('procument.purchaseorders');
     Route::get('/get-item-by-barcode/{barcode}', [ProductController::class, 'getItemByBarcode']); // will be used to all PO / GRN /Return / Invoices
+    Route::get('/get-item-by-item-id/{product_code}', [ProductController::class, 'getItemByProductId']); // will be used to all PO / GRN /Return / Invoices
     Route::get('/get-item-to-popup-search', [ProductController::class,'getItemToPopupSearch']);
 
 });

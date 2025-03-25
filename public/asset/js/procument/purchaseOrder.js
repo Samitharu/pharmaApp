@@ -62,13 +62,7 @@ function loadItems() {
                 tableBody.innerHTML += row;
             });
 
-            // Handle select button clicks
-            document.querySelectorAll(".select-btn").forEach(button => {
-                button.addEventListener("click", function () {
-                    let productId = this.getAttribute("data-id");
-                    alert("Selected Product ID: " + productId);
-                });
-            });
+            
         } else {
             console.error("Failed to load data.");
         }
@@ -76,3 +70,28 @@ function loadItems() {
     .catch(error => console.error("Error fetching items:", error));
 }
 
+function loadItemDetails(){
+    // Handle select button clicks
+    document.querySelectorAll(".select-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const transTable = document.getElementById("transactionTable");
+            let productId = this.getAttribute("data-id");
+            fetch(`/get-item-by-item-id/${productId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                /* let row = transTable.firstElementChild() */
+                row.querySelector(".item-name").value = data.item.name;
+                row.querySelector(".item-code").value = data.item.item_code;
+                row.querySelector(".pack-size").value = data.item.pack_size;
+                row.querySelector(".purchase-price").value = data.item.purchase_price;
+                row.querySelector(".wholesale-price").value = data.item.wholesale_price;
+                row.querySelector(".retail-price").value = data.item.retail_price;
+                row.querySelector(".qty").focus();
+            } 
+        })
+        .catch(error => console.error("Error fetching item:", error));
+            
+        });
+    });
+}

@@ -1,73 +1,73 @@
 document.addEventListener("DOMContentLoaded", function () {
     const table = document.getElementById("transactionsTable");
 
-// Function to update the row count
-function updateRowCount() {
-    const rowCount = table.querySelectorAll("tbody tr").length;
-    const rowCountDisplay = document.getElementById("rowCount");
-    if (rowCountDisplay) {
-        rowCountDisplay.textContent = rowCount; // Update the row count in the green span
-    }
-}
-
-// Add new row when "Enter" is pressed
-table.addEventListener("keydown", function (event) {
-    // Check if "Enter" key is pressed & exclude remove button
-    if (event.key === "Enter" && !event.target.closest(".remove-item")) {
-        event.preventDefault(); // Prevent form submission
-
-        let currentRow = event.target.closest("tr");
-        if (currentRow) {
-            // Clone row and reset values
-            let newRow = currentRow.cloneNode(true);
-            newRow.querySelectorAll("input").forEach(input => input.value = "");
-
-            // Append new row
-            table.querySelector("tbody").appendChild(newRow);
-
-            // Update row count after adding
-            updateRowCount();
+    // Function to update the row count
+    function updateRowCount() {
+        const rowCount = table.querySelectorAll("tbody tr").length;
+        const rowCountDisplay = document.getElementById("rowCount");
+        if (rowCountDisplay) {
+            rowCountDisplay.textContent = rowCount; // Update the row count in the green span
         }
     }
-    const searchInput = document.getElementById("tableSearchInput");
-    if (searchInput && table) {
-        searchInput.addEventListener("keyup", function () {
-            const filter = searchInput.value.toLowerCase();
-            const rows = table.querySelectorAll("tbody tr");
-    
-            rows.forEach(row => {
-                let matchFound = false;
-    
-                // Check each input field inside the row
-                row.querySelectorAll("input").forEach(input => {
-                    if (input.value.toLowerCase().includes(filter)) {
-                        matchFound = true;
-                    }
+
+    // Add new row when "Enter" is pressed
+    table.addEventListener("keydown", function (event) {
+        // Check if "Enter" key is pressed & exclude remove button
+        if (event.key === "Enter" && !event.target.closest(".remove-item")) {
+            event.preventDefault(); // Prevent form submission
+
+            let currentRow = event.target.closest("tr");
+            if (currentRow) {
+                // Clone row and reset values
+                let newRow = currentRow.cloneNode(true);
+                newRow.querySelectorAll("input").forEach(input => input.value = "");
+
+                // Append new row
+                table.querySelector("tbody").appendChild(newRow);
+
+                // Update row count after adding
+                updateRowCount();
+            }
+        }
+        const searchInput = document.getElementById("tableSearchInput");
+        if (searchInput && table) {
+            searchInput.addEventListener("keyup", function () {
+                const filter = searchInput.value.toLowerCase();
+                const rows = table.querySelectorAll("tbody tr");
+
+                rows.forEach(row => {
+                    let matchFound = false;
+
+                    // Check each input field inside the row
+                    row.querySelectorAll("input").forEach(input => {
+                        if (input.value.toLowerCase().includes(filter)) {
+                            matchFound = true;
+                        }
+                    });
+
+                    // Show row if a match is found, otherwise hide it
+                    row.style.display = matchFound ? "" : "none";
                 });
-    
-                // Show row if a match is found, otherwise hide it
-                row.style.display = matchFound ? "" : "none";
             });
-        });
-    }
-    
-});
-
-// Remove row when clicking "Remove" button
-table.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-item")) {
-        const rows = table.querySelectorAll("tbody tr");
-        if (rows.length > 1) { // Prevent removing the last row
-            event.target.closest("tr").remove();
-
-            // Update row count after removing
-            updateRowCount();
         }
-    }
-});
 
-// Initial row count update
-updateRowCount();
+    });
+
+    // Remove row when clicking "Remove" button
+    table.addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-item")) {
+            const rows = table.querySelectorAll("tbody tr");
+            if (rows.length > 1) { // Prevent removing the last row
+                event.target.closest("tr").remove();
+
+                // Update row count after removing
+                updateRowCount();
+            }
+        }
+    });
+
+    // Initial row count update
+    updateRowCount();
 
     let summaryBox = document.getElementById("summaryBox");
     let toggleButton = document.createElement("button"); // Create toggle button
@@ -167,7 +167,10 @@ updateRowCount();
 
 
 //show item search modal
-function showItemSearchModal(modalId) {
+let clickedRowObject = null;
+function showItemSearchModal(modalId,object) {
+   
+    
     const itemModal = document.getElementById(modalId);
 
     if (itemModal) {
@@ -176,4 +179,28 @@ function showItemSearchModal(modalId) {
     } else {
         console.error("Modal not found with ID:", modalId);
     }
+    clickedRowObject = object;
+}
+
+window.searchTable = function(event) {
+    const searchInput = event.target;
+    const dataId = searchInput.getAttribute("data-id");
+    console.log("Data ID:", dataId);
+    const filter = searchInput.value.toLowerCase();
+    const popupTable = document.getElementById(dataId);
+    const rows = popupTable.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+        let matchFound = false;
+
+        // Check each input field inside the row
+        row.querySelectorAll("td").forEach(td => {
+            if (td.textContent.toLowerCase().includes(filter)) {
+            matchFound = true;
+            }
+        });
+
+        // Show row if a match is found, otherwise hide it
+        row.style.display = matchFound ? "" : "none";
+    });
 }

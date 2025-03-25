@@ -12,13 +12,15 @@ class ItemPopUpSearch extends Component
     public $title;
     public $size;
     public $footer;
+    public $searchingTable;
 
-    public function __construct($id, $title = 'Modal Title', $size = '', $footer = null)
+    public function __construct($id, $title = 'Modal Title', $size = '',$searchingTable,$footer = null)
     {
         $this->id = $id;
         $this->title = $title;
         $this->size = $size;
         $this->footer = $footer;
+        $this->searchingTable = $searchingTable;
     }
 
     public function render()

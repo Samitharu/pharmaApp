@@ -74,7 +74,7 @@
                                 $rows = [
                                 [
                                 'Barcode' => ['type' => 'text', 'placeholder' => 'Scan Barcode', 'class' => 'barcode-input' ,'oninput' => 'fetchItemDetails(event)'],
-                                'Item Code' => ['type' => 'text', 'placeholder' => 'Item Code', 'class' => 'item-code', 'onfocus' => 'showItemSearchModal("itemSearchModal")'],
+                                'Item Code' => ['type' => 'text', 'placeholder' => 'Item Code', 'class' => 'item-code', 'onfocus' => 'showItemSearchModal("itemSearchModal",this)'],
                                 'Item Name' => ['type' => 'text', 'placeholder' => 'Item Name', 'class' => 'item-name'],
                                 'Qty' => ['type' => 'number', 'placeholder' => 'Qty', 'class' => 'qty'],
                                 'FOC' => ['type' => 'number', 'placeholder' => 'FOC'],
@@ -106,16 +106,17 @@
     </body>
 
 </x-app-layout>
-<x-ItemPopUpSearch id="itemSearchModal" title="Search Products">
+<x-ItemPopUpSearch id="itemSearchModal" title="Search Products" size="modal-lg" searchingTable="productSearchTable">
 
     <div class="p-3">
         <!-- Search Input -->
-        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search products...">
+        <!-- <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search products..."> -->
+       
 
         <!-- Table -->
         <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="thead-dark">
+            <table class="table table-hover" id="productSearchTable">
+                <thead class="table-dark">
                     <tr>
                         <th>Product Code</th>
                         <th>Product Name</th>
@@ -143,6 +144,6 @@
     </x-slot>
 </x-ItemPopUpSearch>
 <script src="{{ asset('asset/js/procument/purchaseOrder.js') }}"></script>
-<script src="{{ asset('asset/js/common/common.js') }}"></script>
+<script src="{{ asset('asset/js/common/common.js') }}" defer></script>
 
 </html>
