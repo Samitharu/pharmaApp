@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //show item search modal
 let clickedRowObject = null;
 function showItemSearchModal(modalId,object) {
+   console.log(object);
    
     
     const itemModal = document.getElementById(modalId);
@@ -179,7 +180,7 @@ function showItemSearchModal(modalId,object) {
     } else {
         console.error("Modal not found with ID:", modalId);
     }
-    clickedRowObject = object;
+    clickedRowObject = object.closest("tr");;
 }
 
 window.searchTable = function(event) {

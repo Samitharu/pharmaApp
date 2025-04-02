@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-   
+
 
     loadItems();
 });
 
 
 let debounceTimer; // Store the timer
-
+//load items using barcode to transaction table
 function fetchItemDetails(event) {
-    let inputField = event.target; 
-    let barcode = inputField.value; 
+    let inputField = event.target;
+    let barcode = inputField.value;
 
     // Clear the previous timer to reset the debounce delay
     clearTimeout(debounceTimer);
@@ -23,7 +23,7 @@ function fetchItemDetails(event) {
                     if (data.success) {
                         let row = inputField.closest("tr");
                         console.log(row);
-                        
+
                         row.querySelector(".item-name").value = data.item.name;
                         row.querySelector(".item-code").value = data.item.item_code;
                         row.querySelector(".pack-size").value = data.item.pack_size;
@@ -31,7 +31,7 @@ function fetchItemDetails(event) {
                         row.querySelector(".wholesale-price").value = data.item.wholesale_price;
                         row.querySelector(".retail-price").value = data.item.retail_price;
                         row.querySelector(".qty").focus();
-                    } 
+                    }
                 })
                 .catch(error => console.error("Error fetching item:", error));
         }
@@ -42,56 +42,69 @@ function fetchItemDetails(event) {
 //load items to the popup search
 function loadItems() {
     fetch(`/get-item-to-popup-search`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const tableBody = document.getElementById("productTable");
-            tableBody.innerHTML = ""; // Clear existing rows
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const tableBody = document.getElementById("productTable");
+                tableBody.innerHTML = ""; // Clear existing rows
 
-            data.items.forEach((item, index) => {
-                let row = `<tr>
+                data.items.forEach((item, index) => {
+                    let row = `<tr>
                     <td>${item.product_code}</td>
                     <td>${item.product_name}</td>
                     <td>${item.pack_size}</td>
                     <td>0</td>
-                    <td>${item.retail_price }</td>
+                    <td>${item.retail_price}</td>
                     <td>
-                        <button class="btn btn-primary btn-sm select-btn" data-id="${item.product_id}">Select</button>
+                        <button class="btn btn-primary btn-sm select-btn" data-id="${item.product_id}" onClick="loadItemDetails(this)">Select</button>
                     </td>
                 </tr>`;
-                tableBody.innerHTML += row;
-            });
+                    tableBody.innerHTML += row;
+                });
 
-            
-        } else {
-            console.error("Failed to load data.");
-        }
-    })
-    .catch(error => console.error("Error fetching items:", error));
+
+            } else {
+                console.error("Failed to load data.");
+            }
+        })
+        .catch(error => console.error("Error fetching items:", error));
 }
 
-function loadItemDetails(){
-    // Handle select button clicks
-    document.querySelectorAll(".select-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            const transTable = document.getElementById("transactionTable");
-            let productId = this.getAttribute("data-id");
-            fetch(`/get-item-by-item-id/${productId}`)
+//Load item using pop up search to transaction table
+function loadItemDetails(event) {
+
+    const transTable = document.getElementById("transactionTable");
+    let productId = event.getAttribute("data-id");
+
+
+
+    fetch(`/get-item-by-item-id/${productId}`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                /* let row = transTable.firstElementChild() */
-                row.querySelector(".item-name").value = data.item.name;
-                row.querySelector(".item-code").value = data.item.item_code;
-                row.querySelector(".pack-size").value = data.item.pack_size;
-                row.querySelector(".purchase-price").value = data.item.purchase_price;
-                row.querySelector(".wholesale-price").value = data.item.wholesale_price;
-                row.querySelector(".retail-price").value = data.item.retail_price;
-                row.querySelector(".qty").focus();
-            } 
+                let isDuplicate = Array.from(document.querySelectorAll(".item-code"))
+                    .some(input => input !== clickedRowObject.querySelector(".item-code") && input.value.trim() === data.item.product_code);
+                
+                if(!isDuplicate){
+                    let row = clickedRowObject;
+                    row.querySelector(".item-name").value = data.item.product_name;
+                    row.querySelector(".item-code").value = data.item.product_code;
+                    row.querySelector(".pack-size").value = data.item.pack_size;
+                    row.querySelector(".purchase-price").value = data.item.purchase_price;
+                    row.querySelector(".wholesale-price").value = data.item.wholesale_price;
+                    row.querySelector(".retail-price").value = data.item.retail_price;
+                    row.querySelector(".qty").focus();
+                }else{
+                    alertify.error('Product can not be duplicated');
+                }
+               
+            }
         })
         .catch(error => console.error("Error fetching item:", error));
-            
-        });
-    });
+
+}
+
+//Calculate value / Gross /Net Totals
+function calculateValue(){
+
 }

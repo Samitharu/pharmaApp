@@ -20,19 +20,19 @@
                                         <select name="cmbSupplier" id="cmbSupplier" class="form-select"></select>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                        <x-server-date id="expectedDate" name="expectedDate" label="Expected Date"/>
+                                        <x-server-date id="expectedDate" name="expectedDate" label="Expected Date" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
-                                    <x-payment-method-select-tag/>
+                                        <x-payment-method-select-tag />
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Discount</label>
                                         <input type="text" name="txtDiscount" id="txtDiscount" class="form-control numeric" placeholder="Enter discount">
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                                 <h5 class="text-center">Product Details</h5>
 
                                 @php
-                                $columns = ['Barcode','Item Code', 'Item Name', 'Qty', 'FOC', 'Pack Size', 'Purchase Price', 'Wholesale Price', 'Retail Price', 'Action'];
+                                $columns = ['Barcode','Item Code', 'Item Name', 'Qty', 'FOC', 'Pack Size', 'Purchase Price', 'Wholesale Price', 'Retail Price','Value', 'Action'];
 
                                 $rows = [
                                 [
@@ -82,6 +82,7 @@
                                 'Purchase Price' => ['type' => 'text', 'placeholder' => 'Purchase Price', 'class' => 'purchase-price'],
                                 'Wholesale Price' => ['type' => 'text', 'placeholder' => 'Wholesale Price', 'class' => 'wholesale-price'],
                                 'Retail Price' => ['type' => 'text', 'placeholder' => 'Retail Price', 'class' => 'retail-price'],
+                                'Value' => ['type' => 'text', 'placeholder' => 'Value', 'class' => 'value'],
                                 'Action' => '<button type="button" class="btn btn-danger btn-sm remove-item">Remove</button>',
                                 ]
                                 ];
@@ -111,7 +112,7 @@
     <div class="p-3">
         <!-- Search Input -->
         <!-- <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search products..."> -->
-       
+
 
         <!-- Table -->
         <div class="table-responsive">
